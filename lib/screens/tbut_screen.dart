@@ -182,7 +182,7 @@ class _TbutScreenState extends State<TbutScreen> {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      '${(_tenths / 10).toStringAsFixed(1)}',
+                      (_tenths / 10).toStringAsFixed(1),
                       style: const TextStyle(
                         fontSize: 72,
                         fontWeight: FontWeight.w900,
