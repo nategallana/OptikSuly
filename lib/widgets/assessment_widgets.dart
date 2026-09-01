@@ -222,7 +222,7 @@ class CameraPlaceholder extends StatelessWidget {
               ],
             ),
           ),
-          if (overlay != null) overlay!,
+          ?overlay,
         ],
       ),
     );

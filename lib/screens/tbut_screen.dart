@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:optik_suly/models/assessment.dart';
 import 'package:optik_suly/screens/tmh_screen.dart';
 import 'package:optik_suly/theme/app_theme.dart';
 import 'package:optik_suly/widgets/assessment_widgets.dart';
+import 'package:optik_suly/widgets/live_camera_view.dart';
 
 enum _TbutStage { introduction, trials, result }
 
@@ -161,10 +163,9 @@ class _TbutScreenState extends State<TbutScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            const CameraPlaceholder(
-              title: 'Rear Camera View',
-              subtitle: 'Eye region and tear-film mask will appear here',
+            const LiveCameraView(
               height: 210,
+              lensDirection: CameraLensDirection.back,
             ),
             const SizedBox(height: 20),
             Card(
@@ -182,7 +183,7 @@ class _TbutScreenState extends State<TbutScreen> {
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      '${(_tenths / 10).toStringAsFixed(1)}',
+                      (_tenths / 10).toStringAsFixed(1),
                       style: const TextStyle(
                         fontSize: 72,
                         fontWeight: FontWeight.w900,

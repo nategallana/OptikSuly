@@ -25,7 +25,7 @@ class ResultsScreen extends StatelessWidget {
             child: OutlinedButton.icon(
               onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                  content: Text('PDF export will be added with the backend.'),
+                  content: Text('Assessment saved locally to database. PDF export coming soon!'),
                 ),
               ),
               icon: const Icon(Icons.share_outlined),

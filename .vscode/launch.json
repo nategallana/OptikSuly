@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "OptikSuly - Pixel Emulator",
+            "request": "launch",
+            "type": "dart",
+            "cwd": "C:\\Users\\Nate\\OptikSuly",
+            "deviceId": "emulator-5554"
+        }
+    ]
+}

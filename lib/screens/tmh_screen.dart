@@ -1,8 +1,11 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:optik_suly/models/assessment.dart';
 import 'package:optik_suly/screens/results_screen.dart';
+import 'package:optik_suly/services/app_database.dart';
 import 'package:optik_suly/theme/app_theme.dart';
 import 'package:optik_suly/widgets/assessment_widgets.dart';
+import 'package:optik_suly/widgets/live_camera_view.dart';
 
 enum _TmhStage { introduction, calibration, measurement, result }
 
@@ -38,7 +41,7 @@ class _TmhScreenState extends State<TmhScreen> {
     });
   }
 
-  void _finish() {
+  Future<void> _finish() async {
     final result = AssessmentResult(
       patient: widget.result.patient,
       answers: widget.result.answers,
@@ -47,7 +50,17 @@ class _TmhScreenState extends State<TmhScreen> {
       rightTbut: widget.result.rightTbut,
       leftTmh: _left ?? .24,
       rightTmh: _right ?? .22,
+      completedAt: DateTime.now(),
     );
+
+    // Save assessment to local SQLite database
+    try {
+      await AppDatabase.instance.saveAssessment(result);
+    } catch (e) {
+      debugPrint('Failed to save assessment: $e');
+    }
+
+    if (!mounted) return;
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => ResultsScreen(result: result)),
@@ -255,10 +268,9 @@ class _CaliperCamera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CameraPlaceholder(
-      title: 'Position camera over eye',
-      subtitle: 'Drag the lines to measure',
+    return LiveCameraView(
       height: 420,
+      lensDirection: CameraLensDirection.back,
       overlay: LayoutBuilder(
         builder: (context, size) => Stack(
           children: [
