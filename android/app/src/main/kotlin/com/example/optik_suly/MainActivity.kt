@@ -1,4 +1,4 @@
-package com.optiksuly.optik_suly
+package com.example.optik_suly
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:optik_suly/models/assessment.dart';
 import 'package:optik_suly/screens/tbut_screen.dart';
