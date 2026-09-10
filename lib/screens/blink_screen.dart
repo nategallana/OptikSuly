@@ -6,7 +6,7 @@ import 'package:optik_suly/models/assessment.dart';
 import 'package:optik_suly/screens/tbut_screen.dart';
 import 'package:optik_suly/theme/app_theme.dart';
 import 'package:optik_suly/widgets/assessment_widgets.dart';
-import 'package:optik_suly/widgets/live_camera_view.dart';
+import 'package:optik_suly/widgets/blink_camera_view.dart';
 
 enum _BlinkStage { introduction, recording, result }
 
@@ -109,10 +109,9 @@ class _BlinkScreenState extends State<BlinkScreen> {
         ),
         child: Column(
           children: [
-            const LiveCameraView(
-              height: 270,
-              lensDirection: CameraLensDirection.front,
-            ),
+            const BlinkCameraView(
+  height: 270,
+),
             const Spacer(),
             Text(
               '0:${_secondsLeft.toString().padLeft(2, '0')}',
